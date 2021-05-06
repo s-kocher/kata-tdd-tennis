@@ -11,6 +11,9 @@ public class TennisGame {
     }
 
     public String score() {
+        if (player1Score == 1 && player2Score == 1 ) {
+            return "Fifteen-Fifteen";
+        }
         if (player1Score == 1) {
             return "Fifteen-Love";
         }
