@@ -9,11 +9,16 @@ public class TennisGame {
         this.player1Score = p1Score;
         this.player2Score = p2Score;
     }
+
     public String score() {
         if (player1Score == 1) {
             return "Fifteen-Love";
         }
+        if (player2Score == 1) {
+            return "Love-Fifteen";
+        }
 
         return "Love-Love";
     }
+
 }

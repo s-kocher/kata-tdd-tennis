@@ -24,4 +24,13 @@ public class TennisGameTest {
         assertEquals("Fifteen-Love", score);
     }
 
+    @Test
+    public void should_second_player_scores_game_score_is_Love_Fifteen() {
+        TennisGame game = new TennisGame(0, 1);
+
+        String score = game.score();
+
+        assertEquals("Love-Fifteen", score);
+    }
+
 }
