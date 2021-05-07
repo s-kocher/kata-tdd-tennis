@@ -78,4 +78,13 @@ public class TennisGameTest {
         assertEquals("Thirty-Forty", score);
     }
 
+    @Test
+    public void should_for_raw_score_3_3_displayed_score_must_be_Deuce() {
+        TennisGame game = new TennisGame(3, 3);
+
+        String score = game.score();
+
+        assertEquals("Deuce", score);
+    }
+
 }

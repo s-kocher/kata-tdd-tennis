@@ -18,6 +18,10 @@ public class TennisGame {
     }
 
     public String score() {
+        if (player1Score == player2Score && player1Score >= 3) {
+            return "Deuce";
+        }
+
         String player1DisplayScore = getDisplayPlayerScore(player1Score);
         String player2DisplayScore = getDisplayPlayerScore(player2Score);
 
