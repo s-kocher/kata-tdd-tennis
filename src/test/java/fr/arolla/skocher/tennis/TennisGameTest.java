@@ -61,6 +61,15 @@ public class TennisGameTest {
     }
 
     @Test
+    public void should_for_raw_score_2_2_displayed_score_must_be_Thirty_Thirty() {
+        TennisGame game = new TennisGame(2, 2);
+
+        String score = game.score();
+
+        assertEquals("Thirty-Thirty", score);
+    }
+
+    @Test
     public void should_for_raw_score_3_0_displayed_score_must_be_Forty_Love() {
         TennisGame game = new TennisGame(3, 0);
 
@@ -81,6 +90,24 @@ public class TennisGameTest {
     @Test
     public void should_for_raw_score_3_3_displayed_score_must_be_Deuce() {
         TennisGame game = new TennisGame(3, 3);
+
+        String score = game.score();
+
+        assertEquals("Deuce", score);
+    }
+
+    @Test
+    public void should_for_raw_score_4_4_displayed_score_must_be_Deuce() {
+        TennisGame game = new TennisGame(4, 4);
+
+        String score = game.score();
+
+        assertEquals("Deuce", score);
+    }
+
+    @Test
+    public void should_for_raw_score_5_5_displayed_score_must_be_Deuce() {
+        TennisGame game = new TennisGame(5, 5);
 
         String score = game.score();
 
