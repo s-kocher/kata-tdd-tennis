@@ -34,7 +34,7 @@ public class TennisGameTest {
     }
 
     @Test
-    public void should_for_raw_score_1_1_displayed_score_must_bes_Fifteen_Fifteen() {
+    public void should_for_raw_score_1_1_displayed_score_must_be_Fifteen_Fifteen() {
         TennisGame game = new TennisGame(1, 1);
 
         String score = game.score();
@@ -43,7 +43,7 @@ public class TennisGameTest {
     }
 
     @Test
-    public void should_for_raw_score_2_0_displayed_score_must_bes_Thirty_Love() {
+    public void should_for_raw_score_2_0_displayed_score_must_be_Thirty_Love() {
         TennisGame game = new TennisGame(2, 0);
 
         String score = game.score();
@@ -52,7 +52,7 @@ public class TennisGameTest {
     }
 
     @Test
-    public void should_for_raw_score_0_2_displayed_score_must_bes_Love_Thirty() {
+    public void should_for_raw_score_0_2_displayed_score_must_be_Love_Thirty() {
         TennisGame game = new TennisGame(0, 2);
 
         String score = game.score();
