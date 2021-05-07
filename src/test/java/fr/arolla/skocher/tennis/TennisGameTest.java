@@ -69,4 +69,13 @@ public class TennisGameTest {
         assertEquals("Forty-Love", score);
     }
 
+    @Test
+    public void should_for_raw_score_2_3_displayed_score_must_be_Thirty_Forty() {
+        TennisGame game = new TennisGame(2, 3);
+
+        String score = game.score();
+
+        assertEquals("Thirty-Forty", score);
+    }
+
 }
