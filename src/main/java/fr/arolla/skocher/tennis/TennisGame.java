@@ -17,23 +17,27 @@ public class TennisGame {
     }
 
     public String score() {
-        if (player1Score == 1 && player2Score == 1 ) {
-            return getDisplayedScore(DISPLAY_SCORE_FIFTEEN, DISPLAY_SCORE_FIFTEEN);
-        }
-        if (player1Score == 1) {
-            return getDisplayedScore(DISPLAY_SCORE_FIFTEEN, DISPLAY_SCORE_LOVE);
-        }
-        if (player1Score == 2) {
-            return getDisplayedScore(DISPLAY_SCORE_THIRTY, DISPLAY_SCORE_LOVE);
-        }
-        if (player2Score == 1) {
-            return getDisplayedScore(DISPLAY_SCORE_LOVE, DISPLAY_SCORE_FIFTEEN);
-        }
+        String player1DisplayScore = getDisplayPlayerScore(player1Score);
+        String player2DisplayScore = getDisplayPlayerScore(player2Score);
 
-        return getDisplayedScore(DISPLAY_SCORE_LOVE, DISPLAY_SCORE_LOVE);
+        return getDisplayedGameScore(player1DisplayScore, player2DisplayScore);
     }
 
-    private String getDisplayedScore(String displayScore1, String displayScore2) {
+    private String getDisplayPlayerScore(int playerScore) {
+        if (playerScore == 0) {
+            return DISPLAY_SCORE_LOVE;
+        }
+        if (playerScore == 1) {
+            return DISPLAY_SCORE_FIFTEEN;
+        }
+        if (playerScore == 2) {
+            return DISPLAY_SCORE_THIRTY;
+        }
+
+        return null;
+    }
+
+    private String getDisplayedGameScore(String displayScore1, String displayScore2) {
         return displayScore1 + DISPLAY_SCORE_SEPARATOR + displayScore2;
     }
 
