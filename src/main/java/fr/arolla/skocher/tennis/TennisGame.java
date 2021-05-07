@@ -5,6 +5,7 @@ public class TennisGame {
     private static final String DISPLAY_SCORE_LOVE = "Love";
     private static final String DISPLAY_SCORE_FIFTEEN = "Fifteen";
     private static final String DISPLAY_SCORE_THIRTY = "Thirty";
+    private static final String DISPLAY_SCORE_FORTY = "Forty";
 
     private static final String DISPLAY_SCORE_SEPARATOR = "-";
 
@@ -32,6 +33,9 @@ public class TennisGame {
         }
         if (playerScore == 2) {
             return DISPLAY_SCORE_THIRTY;
+        }
+        if (playerScore == 3) {
+            return DISPLAY_SCORE_FORTY;
         }
 
         return null;
