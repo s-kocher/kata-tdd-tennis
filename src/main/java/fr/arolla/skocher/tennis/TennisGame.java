@@ -19,19 +19,31 @@ public class TennisGame {
 
     public String score() {
         if (player1Score >= 3 && player2Score >= 3) {
-            if (player1Score > player2Score) {
-                return "Advantage player 1";
+            int winnerPlayer = getWinnerPlayer();
+            if (winnerPlayer == 0) {
+                return "Deuce";
             }
-            if (player2Score > player1Score) {
-                return "Advantage player 2";
-            }
-            return "Deuce";
+             return "Advantage player " + winnerPlayer;
         }
 
         String player1DisplayScore = getDisplayPlayerScore(player1Score);
         String player2DisplayScore = getDisplayPlayerScore(player2Score);
 
         return getDisplayedGameScore(player1DisplayScore, player2DisplayScore);
+    }
+
+    /**
+     * Return 0 if players scores are equal
+     * @return return player number that win
+     */
+    private int getWinnerPlayer() {
+        if (player1Score > player2Score) {
+            return 1;
+        }
+        if (player2Score > player1Score) {
+            return 2;
+        }
+        return 0;
     }
 
     private String getDisplayPlayerScore(int playerScore) {
