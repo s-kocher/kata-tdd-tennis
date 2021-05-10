@@ -25,7 +25,8 @@ public class TennisGameTest {
             Arguments.of(3, 3, "Deuce"),
             Arguments.of(4, 4, "Deuce"),
             Arguments.of(5, 5, "Deuce"),
-            Arguments.of(4, 3, "Advantage player 1")
+            Arguments.of(4, 3, "Advantage player 1"),
+            Arguments.of(3, 4, "Advantage player 2")
         );
     }
 
