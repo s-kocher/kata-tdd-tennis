@@ -1,14 +1,33 @@
 package fr.arolla.skocher.tennis;
 
+import java.util.Arrays;
+
 public class TennisGame {
 
-    private static final String DISPLAY_SCORE_LOVE = "Love";
-    private static final String DISPLAY_SCORE_FIFTEEN = "Fifteen";
-    private static final String DISPLAY_SCORE_THIRTY = "Thirty";
-    private static final String DISPLAY_SCORE_FORTY = "Forty";
-    private static final String DISPLAY_SCORE_DEUCE = "Deuce";
-    private static final String DISPLAY_SCORE_ADVANTAGE_PLAYER = "Advantage player %s";
-    private static final String DISPLAY_SCORE_VICTORY_PLAYER = "Victory player %s";
+    private enum TennisScore {
+        
+        LOVE(0, "Love"),
+        FIFTEEN(1, "Fifteen"),
+        THIRTY(2, "Thirty"),
+        FORTY(3, "Forty"),
+        DEUCE("Deuce"),
+        ADVANTAGE("Advantage player %s"),
+        VICTORY("Victory player %s");
+
+        int associatedRawScore = -1;
+        String message;
+
+        TennisScore(String message) {
+            this.message = message;
+        }
+
+        TennisScore(int associatedRawScore, String message) {
+            this(message);
+            this.associatedRawScore = associatedRawScore;
+        }
+
+    }
+
 
     private static final String DISPLAY_SCORE_SEPARATOR = "-";
 
@@ -26,15 +45,15 @@ public class TennisGame {
         int highestScore = getHighestScore();
 
         if (highestScore >= 4 && scoreDelta >= 2) {
-            return getDisplayWinnerPlayerScore(DISPLAY_SCORE_VICTORY_PLAYER, winnerPlayer);
+            return getDisplayWinnerPlayerScore(TennisScore.VICTORY, winnerPlayer);
         }
 
         if (player1Score >= 3 && player2Score >= 3) {
 
             if (winnerPlayer == 0) {
-                return DISPLAY_SCORE_DEUCE;
+                return TennisScore.DEUCE.message;
             }
-             return getDisplayWinnerPlayerScore(DISPLAY_SCORE_ADVANTAGE_PLAYER, winnerPlayer);
+             return getDisplayWinnerPlayerScore(TennisScore.ADVANTAGE, winnerPlayer);
         }
 
         String player1DisplayScore = getDisplayPlayerScore(player1Score);
@@ -66,24 +85,15 @@ public class TennisGame {
     }
 
     private String getDisplayPlayerScore(int playerScore) {
-        if (playerScore == 0) {
-            return DISPLAY_SCORE_LOVE;
-        }
-        if (playerScore == 1) {
-            return DISPLAY_SCORE_FIFTEEN;
-        }
-        if (playerScore == 2) {
-            return DISPLAY_SCORE_THIRTY;
-        }
-        if (playerScore == 3) {
-            return DISPLAY_SCORE_FORTY;
-        }
-
-        return null;
+        return Arrays.stream(TennisScore.values())
+            .filter(e -> e.associatedRawScore == playerScore)
+            .findFirst()
+            .map(e -> e.message)
+            .orElse(null);
     }
 
-    private String getDisplayWinnerPlayerScore(String message, int winnerPlayer) {
-        return String.format(message, winnerPlayer);
+    private String getDisplayWinnerPlayerScore(TennisScore tennisScore, int winnerPlayer) {
+        return String.format(tennisScore.message, winnerPlayer);
     }
 
     private String getDisplayedGameScore(String displayScore1, String displayScore2) {
