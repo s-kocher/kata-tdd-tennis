@@ -6,6 +6,9 @@ public class TennisGame {
     private static final String DISPLAY_SCORE_FIFTEEN = "Fifteen";
     private static final String DISPLAY_SCORE_THIRTY = "Thirty";
     private static final String DISPLAY_SCORE_FORTY = "Forty";
+    private static final String DISPLAY_SCORE_DEUCE = "Deuce";
+    private static final String DISPLAY_SCORE_ADVANTAGE_PLAYER = "Advantage player %s";
+    private static final String DISPLAY_SCORE_VICTORY_PLAYER = "Victory player %s";
 
     private static final String DISPLAY_SCORE_SEPARATOR = "-";
 
@@ -23,15 +26,15 @@ public class TennisGame {
         int highestScore = getHighestScore();
 
         if (highestScore >= 4 && scoreDelta >= 2) {
-            return "Victory player " + winnerPlayer;
+            return getDisplayWinnerPlayerScore(DISPLAY_SCORE_VICTORY_PLAYER, winnerPlayer);
         }
 
         if (player1Score >= 3 && player2Score >= 3) {
 
             if (winnerPlayer == 0) {
-                return "Deuce";
+                return DISPLAY_SCORE_DEUCE;
             }
-             return "Advantage player " + winnerPlayer;
+             return getDisplayWinnerPlayerScore(DISPLAY_SCORE_ADVANTAGE_PLAYER, winnerPlayer);
         }
 
         String player1DisplayScore = getDisplayPlayerScore(player1Score);
@@ -77,6 +80,10 @@ public class TennisGame {
         }
 
         return null;
+    }
+
+    private String getDisplayWinnerPlayerScore(String message, int winnerPlayer) {
+        return String.format(message, winnerPlayer);
     }
 
     private String getDisplayedGameScore(String displayScore1, String displayScore2) {
