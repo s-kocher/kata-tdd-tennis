@@ -18,14 +18,16 @@ public class TennisGame {
     }
 
     public String score() {
-        if (player1Score >= 4 && player1Score > player2Score && player1Score-player2Score>=2) {
-            return "Victory player 1";
+        int winnerPlayer = getWinnerPlayer();
+        int scoreDelta = getScoreDelta();
+        int highestScore = getHighestScore();
+
+        if (highestScore >= 4 && scoreDelta >= 2) {
+            return "Victory player " + winnerPlayer;
         }
-        if (player2Score >= 4 && player2Score > player1Score && player2Score-player1Score>=2) {
-            return "Victory player 2";
-        }
+
         if (player1Score >= 3 && player2Score >= 3) {
-            int winnerPlayer = getWinnerPlayer();
+
             if (winnerPlayer == 0) {
                 return "Deuce";
             }
@@ -50,6 +52,14 @@ public class TennisGame {
             return 2;
         }
         return 0;
+    }
+
+    private int getScoreDelta() {
+        return Math.abs(player1Score-player2Score);
+    }
+
+    private int getHighestScore() {
+        return Math.max(player1Score, player2Score);
     }
 
     private String getDisplayPlayerScore(int playerScore) {
