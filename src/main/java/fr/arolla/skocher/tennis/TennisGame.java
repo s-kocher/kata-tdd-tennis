@@ -21,6 +21,9 @@ public class TennisGame {
         if (player1Score >= 4 && player1Score > player2Score && player1Score-player2Score>=2) {
             return "Victory player 1";
         }
+        if (player2Score >= 4 && player2Score > player1Score && player2Score-player1Score>=2) {
+            return "Victory player 2";
+        }
         if (player1Score >= 3 && player2Score >= 3) {
             int winnerPlayer = getWinnerPlayer();
             if (winnerPlayer == 0) {
