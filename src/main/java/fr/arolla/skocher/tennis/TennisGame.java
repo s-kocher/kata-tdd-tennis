@@ -28,7 +28,6 @@ public class TennisGame {
 
     }
 
-
     private static final String DISPLAY_SCORE_SEPARATOR = "-";
 
     private final int player1Score;
@@ -56,10 +55,10 @@ public class TennisGame {
              return getDisplayWinnerPlayerScore(TennisScore.ADVANTAGE, winnerPlayer);
         }
 
-        String player1DisplayScore = getDisplayPlayerScore(player1Score);
-        String player2DisplayScore = getDisplayPlayerScore(player2Score);
+        TennisScore player1TennisScore = getPlayerTennisScore(player1Score);
+        TennisScore player2TennisScore = getPlayerTennisScore(player2Score);
 
-        return getDisplayedGameScore(player1DisplayScore, player2DisplayScore);
+        return getDisplayedGameScore(player1TennisScore, player2TennisScore);
     }
 
     /**
@@ -84,20 +83,19 @@ public class TennisGame {
         return Math.max(player1Score, player2Score);
     }
 
-    private String getDisplayPlayerScore(int playerScore) {
+    private TennisScore getPlayerTennisScore(int playerScore) {
         return Arrays.stream(TennisScore.values())
             .filter(e -> e.associatedRawScore == playerScore)
             .findFirst()
-            .map(e -> e.message)
-            .orElse(null);
+            .orElseThrow(() -> new IllegalArgumentException("No matching score for player score " + playerScore));
     }
 
     private String getDisplayWinnerPlayerScore(TennisScore tennisScore, int winnerPlayer) {
         return String.format(tennisScore.message, winnerPlayer);
     }
 
-    private String getDisplayedGameScore(String displayScore1, String displayScore2) {
-        return displayScore1 + DISPLAY_SCORE_SEPARATOR + displayScore2;
+    private String getDisplayedGameScore(TennisScore tennisScore1, TennisScore tennisScore2) {
+        return tennisScore1.message + DISPLAY_SCORE_SEPARATOR + tennisScore2.message;
     }
 
 }
